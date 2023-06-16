@@ -35,14 +35,10 @@ void checkAndAlert(
     batteryChar.coolingType, temperatureInC
   );
 
-  switch(alertTarget) {
-    case TO_CONTROLLER:
+  if(alertTarget == TO_CONTROLLER)
       sendToController(breachType);
-      break;
-    case TO_EMAIL:
+  else
       sendToEmail(breachType);
-      break;
-  }
 }
 
 void sendToController(BreachType breachType) {
