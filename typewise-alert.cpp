@@ -37,7 +37,7 @@ void checkAndAlert(
 
   if(alertTarget == TO_CONTROLLER)
       sendToController(breachType);
-  else
+  if(alertTarget == TO_EMAIL)
       sendToEmail(breachType);
 }
 
