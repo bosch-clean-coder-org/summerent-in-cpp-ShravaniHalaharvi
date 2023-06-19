@@ -32,10 +32,12 @@ void checkAndAlert(
     batteryChar.coolingType, temperatureInC
   );
 
+  void (*alertFunction)(BreachType) = NULL:
+    
   if (alertTarget == TO_CONTROLLER)
-    sendToController(breachType);
+    alertFunction = sendToController;
   else if(alertTarget == TO_EMAIL)
-    sendToEmail(breachType);
+    alertFunction = sendToEmail;
   
   }
 }
