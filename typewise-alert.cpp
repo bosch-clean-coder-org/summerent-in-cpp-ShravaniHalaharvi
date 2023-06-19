@@ -34,7 +34,7 @@ void checkAndAlert(
    
   if (alertTarget == TO_CONTROLLER)
     sendToController(breachType);
-  else if(alertTarget == TO_EMAIL && (breachType == TOO_LOW || breachType == TOO_HIGH) )
+  else if(alertTarget == TO_EMAIL && breachType != NORMAL )
     sendToEmail(breachType);
   }
 }
@@ -48,7 +48,7 @@ void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   if(breachType == TOO_LOW)
     printf("Hi, the temperature is too low\n");
-  else 
+  else if(breachType == TOO_HIGH)
     printf("Hi, the temperature is too high\n");
 }
 
