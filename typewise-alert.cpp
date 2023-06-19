@@ -22,7 +22,7 @@ BreachType classifyTemperatureBreach(
   if(value < lowerLimit) {
     return TOO_LOW;
   }
-  if(value > upperLimit) {
+  else if(value > upperLimit) {
     return TOO_HIGH;
   }
   return NORMAL;
