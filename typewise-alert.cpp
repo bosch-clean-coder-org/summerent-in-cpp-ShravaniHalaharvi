@@ -35,9 +35,9 @@ void checkAndAlert(
   void (*alertFunction)(BreachType) = NULL:
     
   if (alertTarget == TO_CONTROLLER)
-    alertFunction = sendToController;
+    alertFunction = &sendToController;
   else if(alertTarget == TO_EMAIL)
-    alertFunction = sendToEmail;
+    alertFunction = &sendToEmail;
   
   }
 }
