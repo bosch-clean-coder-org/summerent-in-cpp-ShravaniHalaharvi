@@ -21,8 +21,15 @@ BreachType classifyTemperatureBreach(
       upperLimit = 45;
   else if(coolingType == MED_ACTIVE_COOLING)
       upperLimit = 40;
-   
-  return inferBreach(temperatureInC, lowerLimit, upperLimit);
+
+   if(temperatureInC < lowerLimit) {
+    return TOO_LOW;
+  }
+  if(temperatureInC > upperLimit) {
+    return TOO_HIGH;
+  }
+  return NORMAL;
+ // return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
 void checkAndAlert(
