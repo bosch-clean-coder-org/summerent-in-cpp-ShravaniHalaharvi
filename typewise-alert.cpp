@@ -15,6 +15,7 @@ BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
   int lowerLimit = 0;
   int upperLimit = 0;
+  //Replaced Switch case with if else statements and assigning lower limit = 0 only once
   if(coolingType == PASSIVE_COOLING)
       upperLimit = 35;
   else if(coolingType == HI_ACTIVE_COOLING)
@@ -31,7 +32,7 @@ void checkAndAlert(
   BreachType breachType = classifyTemperatureBreach(
     batteryChar.coolingType, temperatureInC
   );
-   
+   //Replaced Swicth case with if else statements
   if (alertTarget == TO_CONTROLLER)
     sendToController(breachType);
   else if(alertTarget == TO_EMAIL )
@@ -46,6 +47,7 @@ void sendToController(BreachType breachType) {
 
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
+  //Replaced Switch case with if else statements
   if(breachType == TOO_LOW)
     printf("Hi, the temperature is too low\n");
   else if(breachType == TOO_HIGH)
