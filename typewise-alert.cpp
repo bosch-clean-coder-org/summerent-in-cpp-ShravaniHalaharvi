@@ -17,7 +17,7 @@ BreachType classifyTemperatureBreach(
   int upperLimit = 0;
   if(coolingType == PASSIVE_COOLING)
       upperLimit = 35;
-  else if(coolingType == ACTIVE_COOLING)
+  else if(coolingType == HI_ACTIVE_COOLING)
       upperLimit = 45;
   else
       upperLimit = 40;
@@ -34,7 +34,7 @@ void checkAndAlert(
    
   if (alertTarget == TO_CONTROLLER)
     sendToController(breachType);
-  else if(alertTarget == TO_EMAIL && breachType != NORMAL )
+  else if(alertTarget == TO_EMAIL )
     sendToEmail(breachType);
   }
 }
