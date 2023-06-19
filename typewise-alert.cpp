@@ -1,31 +1,28 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
+BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
+  if(value < lowerLimit) {
+    return TOO_LOW;
+  }
+  if(value > upperLimit) {
+    return TOO_HIGH;
+  }
+  return NORMAL;
+}
+
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
   int lowerLimit = 0;
   int upperLimit = 0;
-  switch(coolingType) {
-    case PASSIVE_COOLING:
-      lowerLimit = 0;
+  if(coolingType == PASSIVE_COOLING)
       upperLimit = 35;
-      break;
-    case HI_ACTIVE_COOLING:
-      lowerLimit = 0;
+  else if(coolingType == ACTIVE_COOLING)
       upperLimit = 45;
-      break;
-    case MED_ACTIVE_COOLING:
-      lowerLimit = 0;
+  else if(coolingType == MED_ACTIVE_COOLING)
       upperLimit = 40;
-      break;
-  }
-  if(value < lowerLimit) {
-    return TOO_LOW;
-  }
-  else if(value > upperLimit) {
-    return TOO_HIGH;
-  }
-  return NORMAL;
+   
+  return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
 void checkAndAlert(
@@ -35,10 +32,14 @@ void checkAndAlert(
     batteryChar.coolingType, temperatureInC
   );
 
-  if(alertTarget == TO_CONTROLLER)
+  switch(alertTarget) {
+    case TO_CONTROLLER:
       sendToController(breachType);
-  if(alertTarget == TO_EMAIL)
+      break;
+    case TO_EMAIL:
       sendToEmail(breachType);
+      break;
+  }
 }
 
 void sendToController(BreachType breachType) {
@@ -61,7 +62,6 @@ void sendToEmail(BreachType breachType) {
       break;
   }
 }
-
 
 /*#include "typewise-alert.h"
 #include <stdio.h>
