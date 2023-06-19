@@ -22,14 +22,7 @@ BreachType classifyTemperatureBreach(
   else if(coolingType == MED_ACTIVE_COOLING)
       upperLimit = 40;
 
-   if(temperatureInC < lowerLimit) {
-    return TOO_LOW;
-  }
-  if(temperatureInC > upperLimit) {
-    return TOO_HIGH;
-  }
-  return NORMAL;
- // return inferBreach(temperatureInC, lowerLimit, upperLimit);
+ return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
 void checkAndAlert(
@@ -45,7 +38,9 @@ void checkAndAlert(
     alertFunction = &sendToController;
   else if(alertTarget == TO_EMAIL)
     alertFunction = &sendToEmail;
-  
+
+  if(alertFunction != NULL)
+    alertFunction(BreachType);
   }
 }
 
