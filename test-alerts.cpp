@@ -64,6 +64,11 @@ TEST_CASE("Negative test case for Med Active Cooling") {
   REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 45) != TOO_LOW);
 }
 
-TEST_CASE("Test case for check and Alert") {
+TEST_CASE("Test case for check and Alert to controller") {
   checkAndAlert(TO_CONTROLLER, batterychar[0],10);
 }
+
+TEST_CASE("Test case for check and Alert by sending Email") {
+  checkAndAlert(TO_EMAIL, batterychar[1],20);
+}
+
