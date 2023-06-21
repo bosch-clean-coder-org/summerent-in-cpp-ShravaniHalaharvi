@@ -38,7 +38,6 @@ void checkAndAlert(
   else if(alertTarget == TO_EMAIL )
     sendToEmail(breachType);
   }
-}
 
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
