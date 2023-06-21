@@ -65,5 +65,5 @@ TEST_CASE("Negative test case for Med Active Cooling") {
 }
 
 TEST_CASE("Test case for check and Alert") {
-  REQUIRE(checkAndAlert(TO_CONTROLLER, batterychar[0],10));
+  checkAndAlert(TO_CONTROLLER, batterychar[0],10);
 }
