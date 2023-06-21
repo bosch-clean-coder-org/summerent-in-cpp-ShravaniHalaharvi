@@ -10826,13 +10826,7 @@ namespace Catch {
     // is experimentally determined, so that's not guaranteed.
 
     //static constexpr std::size_t sigStackSize = 32768 >= MINSIGSTKSZ ? 32768 : MINSIGSTKSZ;
-    
-//sysconf function which is used to determine the value of MINSIGSTKSZ is not a constexpr. Hence changing to const
-
-
-// sigStackSize value determined at run time using ternary operator
-// As a result of this altStackMem[sigStackSize] will cause an error as array sizes should be known at compile time
-static const std::size_t sigStackSize = 32768 >= MINSIGSTKSZ ? 32768 : MINSIGSTKSZ;
+    static constexpr std::size_t sigStackSize = 32768;
 
     static SignalDefs signalDefs[] = {
         { SIGINT,  "SIGINT - Terminal interrupt signal" },
