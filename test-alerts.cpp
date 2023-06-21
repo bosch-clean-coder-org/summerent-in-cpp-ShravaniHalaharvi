@@ -7,10 +7,22 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
 }
 
-TEST_CASE("infers the breach according to limits") {
+TEST_CASE("infers the breach according to limits1") {
   REQUIRE(inferBreach(40, 20, 30) == TOO_HIGH);
 }
 
-TEST_CASE("infers the breach according to limits") {
+TEST_CASE("infers the breach according to limits2") {
   REQUIRE(inferBreach(25, 20, 30) == NORMAL);
+}
+
+TEST_CASE("Classify Temperature Breach for Passive Cooling TOO_LOW temperature) {
+  REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, -2) == TOO_LOW);
+}
+
+TEST_CASE("Classify Temperature Breach for Passive Cooling TOO_HIGH temperature) {
+  REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 40) == TOO_HIGH);
+}
+
+TEST_CASE("Classify Temperature Breach for Passive Cooling NORMAL temperature) {
+  REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 20) == NORMAL);
 }
