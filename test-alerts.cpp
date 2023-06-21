@@ -44,7 +44,7 @@ TEST_CASE("Classify Temperature Breach for Med Active Cooling TOO_LOW temperatur
 }
 
 TEST_CASE("Classify Temperature Breach for Med Active Cooling TOO_HIGH temperature") {
-  REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 41) == TOO_HIGH);
+  REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 50) == TOO_HIGH);
 }
 
 TEST_CASE("Classify Temperature Breach for Med Active Cooling NORMAL temperature") {
