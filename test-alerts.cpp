@@ -3,6 +3,7 @@
 #include "test/catch.hpp"
 #include "typewise-alert.h"
 
+BatteryCharacter batterychar[3] = { (PASSIVE_COOLING,"ABC Corp"), (HI_ACTIVE_COOLING,"XYZ Corp"), (MED_ACTIVE_COOLING,"123 Corp") };
 TEST_CASE("infers the breach according to limits") {
   REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
 }
@@ -63,3 +64,6 @@ TEST_CASE("Negative test case for Med Active Cooling") {
   REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 45) != TOO_LOW);
 }
 
+TEST_CASE("Test case for check and Alert") {
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batterychar[0],10));
+}
