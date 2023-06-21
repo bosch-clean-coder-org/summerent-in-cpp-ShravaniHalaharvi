@@ -3,7 +3,7 @@
 #include "test/catch.hpp"
 #include "typewise-alert.h"
 
-BatteryCharacter batterychar[3] = { (PASSIVE_COOLING,"ABC Corp"), (HI_ACTIVE_COOLING,"XYZ Corp"), (MED_ACTIVE_COOLING,"123 Corp") };
+BatteryCharacter batterychar[3] = { {PASSIVE_COOLING,"ABC Corp"}, {HI_ACTIVE_COOLING,"XYZ Corp"}, {MED_ACTIVE_COOLING,"123 Corp"} };
 TEST_CASE("infers the breach according to limits") {
   REQUIRE(inferBreach(12, 20, 30) == TOO_LOW);
 }
