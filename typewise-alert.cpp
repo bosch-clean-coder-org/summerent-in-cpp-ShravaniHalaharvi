@@ -1,5 +1,6 @@
 #include "typewise-alert.h"
 #include <stdio.h>
+#include <vector>
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -13,16 +14,17 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 
 BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
-  int lowerLimit = 0;
-  int upperLimit = 0;
-  //Replaced Switch case with if else statements and assigning lower limit = 0 only once
-  if(coolingType == PASSIVE_COOLING)
-      upperLimit = 35;
-  else if(coolingType == HI_ACTIVE_COOLING)
-      upperLimit = 45;
-  else 
-      upperLimit = 40;
+  std::vector<std::vector<int>> limits =
+  {
+    {0, 35},    // PASSIVE_COOLING
+    {0, 45},    // HI_ACTIVE_COOLING
+    {0, 40}     // MED_ACTIVE_COOLING
+  }
 
+  int coolingIndex = static_cast<int>(coolingType);
+  int lowerLimit = limits[coolingIndex][0];
+  int upperLimit = limits[coolingIndex][1];
+ 
  return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
