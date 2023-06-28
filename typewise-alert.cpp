@@ -19,7 +19,7 @@ BreachType classifyTemperatureBreach(
     {0, 35},    // PASSIVE_COOLING
     {0, 45},    // HI_ACTIVE_COOLING
     {0, 40}     // MED_ACTIVE_COOLING
-  }
+  };
 
   int coolingIndex = static_cast<int>(coolingType);
   int lowerLimit = limits[coolingIndex][0];
