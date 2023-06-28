@@ -1,5 +1,68 @@
 #include "typewise-alert.h"
 #include <stdio.h>
+#include <vector>
+
+BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
+  if(value < lowerLimit) {
+    return TOO_LOW;
+  }
+  if(value > upperLimit) {
+    return TOO_HIGH;
+  }
+  return NORMAL;
+}
+
+BreachType classifyTemperatureBreach(
+    CoolingType coolingType, double temperatureInC) {
+  std::vector<std::vector<int>> limits =
+  {
+    {0, 35},    // PASSIVE_COOLING
+    {0, 45},    // HI_ACTIVE_COOLING
+    {0, 40}     // MED_ACTIVE_COOLING
+  };
+
+  int coolingIndex = static_cast<int>(coolingType);
+  int lowerLimit = limits[coolingIndex][0];
+  int upperLimit = limits[coolingIndex][1];
+ 
+ return inferBreach(temperatureInC, lowerLimit, upperLimit);
+}
+
+void checkAndAlert(
+    AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
+
+  BreachType breachType = classifyTemperatureBreach(
+    batteryChar.coolingType, temperatureInC
+  );
+   //Replaced Swicth case with if else statements
+  if (alertTarget == TO_CONTROLLER)
+    sendToController(breachType);
+  else if(alertTarget == TO_EMAIL )
+    sendToEmail(breachType);
+  }
+
+void sendToController(BreachType breachType) {
+  const unsigned short header = 0xfeed;
+  printf("%x : %x\n", header, breachType);
+}
+
+void sendToEmail(BreachType breachType) {
+  const char* recepient = "a.b@c.com";
+   //Replaced Switch case with if else statements
+  if(breachType == TOO_LOW)
+  {
+    printf("To: %s\n", recepient);
+    printf("Hi, the temperature is too low\n");
+  }
+  else if(breachType == TOO_HIGH)
+  {
+    printf("To: %s\n", recepient);
+    printf("Hi, the temperature is too high\n");
+  }
+}
+
+/*#include "typewise-alert.h"
+#include <stdio.h>
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
@@ -69,3 +132,4 @@ void sendToEmail(BreachType breachType) {
       break;
   }
 }
+*/
