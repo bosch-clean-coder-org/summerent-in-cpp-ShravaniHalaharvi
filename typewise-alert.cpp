@@ -60,9 +60,6 @@ void sendToEmail(BreachType breachType) {
     printf("Hi, the temperature is too high\n");
   }
 }
-}
- 
-
 
 /*#include "typewise-alert.h"
 #include <stdio.h>
