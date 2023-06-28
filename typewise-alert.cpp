@@ -59,6 +59,8 @@ void sendToEmail(BreachType breachType) {
       break;
     case NORMAL:
       break;
+}
+}
   //Replaced Switch case with if else statements
  /* if(breachType == TOO_LOW)
   {
@@ -70,7 +72,7 @@ void sendToEmail(BreachType breachType) {
     printf("To: %s\n", recepient);
     printf("Hi, the temperature is too high\n");
   }*/
-}
+
 
 /*#include "typewise-alert.h"
 #include <stdio.h>
